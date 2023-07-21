@@ -1,0 +1,87 @@
+.login-background {
+    height    : 100vh;
+    background: linear-gradient(142deg, rgb(38, 189, 194) 0%, rgb(56, 168, 27) 100%);
+
+    .login-container {
+        padding         : 10px;
+        width           : 500px;
+        margin          : auto;
+        background-color: white;
+        height          : max-content;
+        border-radius   : 10px;
+        box-shadow      : 2px 4px rgb(102, 105, 100);
+        position        : absolute;
+        top             : 0;
+        bottom          : 0;
+        left            : 0;
+        right           : 0;
+
+        .login-content {
+            .text-login {
+                text-align : center;
+                font-weight: 600;
+                font-size  : 24px;
+            }
+
+            .login-input {
+                margin: 5px 0;
+            }
+
+            .password {
+                div {
+                    position: relative;
+                }
+
+                i {
+                    position: absolute;
+                    top     : 10px;
+                    right   : 5px;
+                    color   : #898d94;
+                    cursor  : pointer;
+                }
+            }
+
+            .btn-login {
+                width        : 100%;
+                height       : 30px;
+                margin       : 15px 0;
+                outline      : none;
+                border       : none;
+                border-radius: 12px;
+                background   : linear-gradient(142deg, rgba(248, 242, 64, 1) 0%, rgba(85, 194, 38, 1) 100%);
+                color        : white;
+                font-size    : 16px;
+
+            }
+
+            .forgot-password {
+                font-size: 12px;
+            }
+
+            .other-login {
+                text-align: center;
+
+                .other-login-method {
+                    margin         : 0 auto;
+                    padding-bottom : 15px;
+                    width          : 50%;
+                    display        : flex;
+                    justify-content: space-around;
+                    align-items    : center;
+                    justify-items  : center;
+                    font-size      : 36px;
+
+                    .fa-google-plus {
+                        color: #be1919;
+                    }
+
+                    .fa-facebook {
+                        color: #0906b4;
+                    }
+
+                    // style="color: #898d94;"
+                }
+            }
+        }
+    }
+}
