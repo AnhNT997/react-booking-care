@@ -14,9 +14,13 @@ const handleApiDeleteUser = (userDeleteId) => {
     data: { userId: userDeleteId },
   });
 };
+const handleApiUpdateUser = (data) => {
+  return axios.put("/api/v1/edit-user", { data });
+};
 export {
   handleApiLogin,
   getAllUsers,
   handleApiCreateUser,
   handleApiDeleteUser,
+  handleApiUpdateUser,
 };

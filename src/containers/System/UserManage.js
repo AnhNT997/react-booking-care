@@ -1,19 +1,22 @@
 import React, { Component } from "react";
-import { FormattedMessage } from "react-intl";
+// import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./UserManage.scss";
 import {
   getAllUsers,
   handleApiCreateUser,
   handleApiDeleteUser,
+  handleApiUpdateUser,
 } from "../../services/userServices";
 import ModalCreateUser from "./ModalCreateUser";
+import { emitter } from "../../utils/emitter";
 class UserManage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       arrUsers: [],
       isOpenModal: false,
+      isEditUser: false,
     };
   }
 
@@ -33,7 +36,9 @@ class UserManage extends Component {
   handleOpenModalCreateUser = () => {
     this.setState({
       isOpenModal: true,
+      isEditUser: false,
     });
+    emitter.emit("EVENT_CLEAR_MODAL_DATA");
   };
 
   toggleCreateUserModal = () => {
@@ -52,7 +57,9 @@ class UserManage extends Component {
       alert("Create user success");
       this.setState({
         isOpenModal: false,
+        isEditUser: false,
       });
+      emitter.emit("EVENT_CLEAR_MODAL_DATA");
     } else {
       alert("Error! " + resp.message);
     }
@@ -66,6 +73,19 @@ class UserManage extends Component {
     this.setState({
       isOpenModal: true,
       isEditUser: true,
+    });
+    let response = await getAllUsers(userEditId);
+    console.log(response);
+    emitter.emit("EVENT_EDIT_USER", response.users);
+  };
+  handleUpdateUser = async (data) => {
+    console.log("update data", data);
+    let resp = await handleApiUpdateUser(data);
+    alert(resp.message);
+    this.handleLoadUsersData();
+    this.setState({
+      isOpenModal: false,
+      isEditUser: false,
     });
   };
   render() {
@@ -87,6 +107,8 @@ class UserManage extends Component {
               isOpen={this.state.isOpenModal}
               toggleFromParent={this.toggleCreateUserModal}
               handleCreateNewUser={this.handleCreateNewUser}
+              handleUpdateUser={this.handleUpdateUser}
+              editUser={this.state.isEditUser}
             ></ModalCreateUser>
             <table>
               <thead>

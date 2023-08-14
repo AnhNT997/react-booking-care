@@ -2,13 +2,15 @@ import React, { Component } from "react";
 // import { FormattedMessage } from 'react-intl';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { connect } from "react-redux";
-import axios from "axios";
-import { handleApiCreateUser } from "../../services/userServices";
+// import axios from "axios";
+// import { handleApiCreateUser } from "../../services/userServices";
+import { emitter } from "../../utils/emitter";
 import "./ModalCreateUser.scss";
 class ModalCreateUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: "",
       errorMessage: "",
       email: "",
       password: "",
@@ -17,11 +19,35 @@ class ModalCreateUser extends Component {
       address: "",
       phoneNumber: "",
     };
+    this.listenEmitterEvent();
+  }
+  listenEmitterEvent() {
+    emitter.on("EVENT_CLEAR_MODAL_DATA", () => {
+      this.setState({
+        id: "",
+        errorMessage: "",
+        email: "",
+        password: "",
+        firstName: "",
+        lastName: "",
+        address: "",
+        phoneNumber: "",
+      });
+    });
+    emitter.on("EVENT_EDIT_USER", (data) => {
+      this.setState({
+        id: data.id,
+        errorMessage: "",
+        email: data.email,
+        password: "hardcode",
+        firstName: data.firstName,
+        lastName: data.lastName,
+        address: data.address,
+        phoneNumber: data.phoneNumber,
+      });
+    });
   }
   toggle = () => {
-    this.setState({
-      errorMessage: "",
-    });
     this.props.toggleFromParent();
   };
   handleCreateUser = () => {
@@ -29,7 +55,11 @@ class ModalCreateUser extends Component {
     console.log(data);
     let validate = this.handleValidateInput(data);
     if (validate) {
-      this.props.handleCreateNewUser(data);
+      if (this.props.editUser) {
+        this.props.handleUpdateUser(data);
+      } else {
+        this.props.handleCreateNewUser(data);
+      }
     }
   };
   handleValidateInput = (data) => {
@@ -63,6 +93,7 @@ class ModalCreateUser extends Component {
 
   render() {
     let errorMessage = this.state.errorMessage;
+    let isEditUser = this.props.editUser;
     return (
       <>
         <Modal
@@ -83,15 +114,19 @@ class ModalCreateUser extends Component {
                   value={this.state.email}
                   id="email"
                   onChange={(event) => this.handleFormInputChange(event)}
+                  disabled={isEditUser ? "disabled" : ""}
                 ></input>
+                {isEditUser && (
+                  <input type="hidden" value={this.state.id} name="id"></input>
+                )}
               </div>
-              <div className="form-item">
-                <label htmlFor="password">Password</label>
+              <div className="form-item" hidden={isEditUser ? "hidden" : ""}>
+                <label htmlFor="pass">Password</label>
                 <input
                   type="password"
                   name="password"
                   value={this.state.password}
-                  id="password"
+                  id="pass"
                   onChange={(event) => this.handleFormInputChange(event)}
                 ></input>
               </div>
@@ -144,7 +179,7 @@ class ModalCreateUser extends Component {
               className="btn px-2"
               onClick={() => this.handleCreateUser()}
             >
-              Create user
+              {isEditUser ? "Save Change" : "Create user"}
             </Button>
             <Button
               color="secondary"
