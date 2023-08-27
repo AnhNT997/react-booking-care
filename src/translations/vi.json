@@ -116,5 +116,30 @@
             "remove-assign-fail": "Bỏ gán gói dịch vụ cho khách hàng thất bại",
             "sure-delete-assign": "Bạn có chắc chắn muốn bỏ gán gói dịch vụ cho khách hàng?"
         }
+    },
+    "home-header":{
+        "speciality":"Chuyên khoa",
+        "find-doctor":"Tìm bác sĩ theo chuyên khoa",
+        "health-facility":"Cơ sở y tế",
+        "choose-clinnic-hospital":"Chọn bệnh viện, phòng khám",
+        "doctor":"Bác sĩ",
+        "choose-good-doctor":"Chọn bác sĩ giỏi",
+        "examination-package":"Gói khám",
+        "general-health-check":"Khám sức khỏe tổng quát",
+        "support":"Hỗ trợ"
+    },
+    "banner":{
+        "title1":"NỀN TẢNG Y TẾ",
+        "title2":"CHĂM SÓC SỨC KHỎE TOÀN DIỆN",
+        "option-1":"khám chuyên khoa",
+        "option-2":"Khám từ xa",
+        "option-3":"khám tổng quát",
+        "option-4":"Xét nghiệm y học",
+        "option-5":"Sức khỏe tinh thần",
+        "option-6":"Khám nha khoa",
+        "option-7":"Gói phẫu thuật",
+        "option-8":"Sản phẩm y tế",
+        "option-9":"Bài test sức khỏe",
+        "option-10":"Y tế gần bạn"
     }
 }

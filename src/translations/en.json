@@ -116,5 +116,30 @@
             "remove-assign-fail": "Fail to unassign service package to customer",
             "sure-delete-assign": "Are you sure to unassign service package to customer?"
         }
+    },
+    "home-header":{
+        "speciality":"Specialist",
+        "find-doctor":"Find a doctor by specialty",
+        "health-facility":"Health facilities",
+        "choose-clinnic-hospital":"Choose a hospital or clinic",
+        "doctor":"Doctor",
+        "choose-good-doctor":"Choose a good doctor",
+        "examination-package":"Examination package",
+        "general-health-check":"General health check",
+        "support":"Support"
+    },
+    "banner":{
+        "title1":"COMPREHENSIVE",
+        "title2":"HEALTH CARE FOUNDATION",
+        "option-1":"specialist examination",
+        "option-2":"Remote examination",
+        "option-3":"general examination",
+        "option-4":"Medical test",
+        "option-5":"Mental health",
+        "option-6":"Dental examination",
+        "option-7":"Surgery pack",
+        "option-8":"Medical products",
+        "option-9":"Health test",
+        "option-10":"Healthcare near you"
     }
 }
